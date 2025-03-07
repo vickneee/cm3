@@ -1,8 +1,8 @@
 # CM3
 
-[CM3 V1](https://cm3-gr2-v1.onrender.com/)
+[CM3 V1 Link](https://cm3-gr2-v1.onrender.com/)
 
-[CM3 V2](https://cm3-gr2-v2.onrender.com/)
+[CM3 V2 Link](https://cm3-gr2-v2.onrender.com/)
 
 ## Deliverables
 
