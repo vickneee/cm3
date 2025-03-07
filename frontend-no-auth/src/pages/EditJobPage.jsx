@@ -28,7 +28,7 @@ const EditJobPage = () => {
     // Fetch existing job details
     const fetchJob = async () => {
       try {
-        const response = await axios.get(`https://cm3-v3-4.onrender.com/api/jobs/${id}`);
+        const response = await axios.get(`/api/jobs/${id}`);
         const jobData = response.data;
 
         setJob({
