@@ -163,14 +163,14 @@ const EditJobPage = () => {
             value={companyName}
             onChange={(e) => setCompanyName(e.target.value)}
           />
-          <label>Contact Email:</label>
+          <label>Company Email:</label>
           <input
             type="text"
             required
             value={contactEmail}
             onChange={(e) => setContactEmail(e.target.value)}
           />
-          <label>Contact Phone:</label>
+          <label>Company Phone:</label>
           <input
             type="text"
             required

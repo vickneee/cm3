@@ -76,13 +76,13 @@ const JobPage = () => {
       ) : (
         <>
           <h2>{job.title}</h2>
-          <p>Type: {job.type}</p>
-          <p>Description: {job.description}</p>
-          <p>Company: {job.company.name}</p>
-          <p>Email: {job.company.contactEmail}</p>
-          <p>Phone: {job.company.contactPhone}</p>
+          <p>Job Type: {job.type}</p>
+          <p>Job Description: {job.description}</p>
+          <p>Company Name: {job.company.name}</p>
+          <p>Company Email: {job.company.contactEmail}</p>
+          <p>Company Phone: {job.company.contactPhone}</p>
           <p>Website: {job.company.website}</p>
-          <p>Size: {job.company.size}</p>
+          <p>Company Size: {job.company.size}</p>
           <p>Location: {job.location}</p>
           <p>Salary: {job.salary}</p>
           <p>Experience Level: {job.experienceLevel}</p>
