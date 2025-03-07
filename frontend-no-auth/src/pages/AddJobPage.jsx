@@ -27,7 +27,7 @@ const AddJobPage = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:4000/api/jobs", {
+      await axios.post("https://cm3-v3-4.onrender.com/api/jobs", {
         title: job.title,
         type: job.type,
         description: job.description,

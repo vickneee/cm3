@@ -12,7 +12,7 @@ const JobDetailsPage = () => {
   useEffect(() => {
     const fetchJob = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/jobs/${id}`);
+        const response = await axios.get(`https://cm3-v3-4.onrender.com/api/jobs/${id}`);
         setJob(response.data);
       } catch (error) {
         console.error("Error fetching job details:", error);
@@ -29,7 +29,7 @@ const JobDetailsPage = () => {
     if (!window.confirm("Are you sure you want to delete this job?")) return;
 
     try {
-      await axios.delete(`http://localhost:4000/api/jobs/${id}`);
+      await axios.delete(`https://cm3-v3-4.onrender.com/api/jobs/${id}`);
       alert("Job deleted successfully!");
       navigate("/");
     } catch (error) {
