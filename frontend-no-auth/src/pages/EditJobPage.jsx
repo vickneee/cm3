@@ -28,7 +28,7 @@ const EditJobPage = () => {
     // Fetch existing job details
     const fetchJob = async () => {
       try {
-        const response = await axios.get(`https://cm3-v3-4.onrender.com/api/jobs/${id}`);
+        const response = await axios.get(`/api/jobs/${id}`);
         const jobData = response.data;
 
         setJob({
@@ -64,7 +64,7 @@ const EditJobPage = () => {
     e.preventDefault();
 
     try {
-      await axios.put(`https://cm3-v3-4.onrender.com/api/jobs/${id}`, {
+      await axios.put(`/api/jobs/${id}`, {
         title: job.title,
         type: job.type,
         description: job.description,
@@ -96,7 +96,7 @@ const EditJobPage = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`https://cm3-v3-4.onrender.com/api/jobs/${id}`);
+      await axios.delete(`/api/jobs/${id}`);
       alert("Job deleted successfully!");
       navigate("/"); // Redirect to homepage
     } catch (error) {

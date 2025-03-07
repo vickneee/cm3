@@ -6,7 +6,7 @@ const JobListings = () => {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    axios.get("https://cm3-v3-4.onrender.com/api/jobs")
+    axios.get("/api/jobs")
       .then(response => setJobs(response.data))
       .catch(error => console.error("Error fetching jobs:", error));
   }, []);
