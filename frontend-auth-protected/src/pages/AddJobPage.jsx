@@ -13,7 +13,7 @@ const AddJobPage = () => {
   const [website, setWebsite] = useState('');
   const [size, setSize] = useState();
   const [location, setLocation] = useState('');
-  const [salary, setSalary] = useState('');
+  const [salary, setSalary] = useState();
   const [experienceLevel, setExperienceLevel] = useState('Entry');
   const [postedDate, setPostedDate] = useState('');
   const [status, setStatus] = useState('open');
@@ -115,8 +115,8 @@ const AddJobPage = () => {
         <input type="text" required value={location}
                onChange={(e) => setLocation(e.target.value)}/>
         <label>Salary:</label>
-        <input type="text" required value={salary}
-               onChange={(e) => setSalary(e.target.value)}/>
+        <input type="number" required value={salary}
+               onChange={(e) => setSalary(e.target.value)} min={0}/>
         <label>Experience Level:</label>
         <select value={experienceLevel}
                 onChange={(e) => setExperienceLevel(e.target.value)}>
