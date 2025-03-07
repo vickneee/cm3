@@ -5,7 +5,7 @@ import useLogin from '../hooks/useLogin.jsx';
 import {toast} from 'react-toastify';
 
 // eslint-disable-next-line react/prop-types
-const Signup = ({setIsAuthenticated}) => {
+const Login = ({setIsAuthenticated}) => {
   const navigate = useNavigate();
   const username = useField("text");
   const password = useField("password");
@@ -51,4 +51,4 @@ const Signup = ({setIsAuthenticated}) => {
   );
 };
 
-export default Signup;
+export default Login;
