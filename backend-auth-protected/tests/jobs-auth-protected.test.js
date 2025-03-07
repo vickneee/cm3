@@ -83,15 +83,16 @@ let token = null;
 beforeAll(async () => {
   await User.deleteMany({});
   const result = await api.post("/api/users/signup").send({
-    name: "John Doe",
-    username: "JohnDoe",
-    password: "R3g5T7#gh",
-    phone_number: "1234567890",
-    gender: "Male",
-    date_of_birth: "1990-01-01",
-    membership_status: "Inactive",
-    address: "123 Main St, City",
-    profile_picture: "https://example.com/profile.jpg",
+    name: "Sara Smith",
+    username: "sara_smith89",
+    password: "myp@ssword123",
+    phone_number: "987-654-3210",
+    gender: "Female",
+    date_of_birth: "1989-11-22",
+    membership_status: "Silver",
+    bio: "Passionate about design and photography.",
+    address: "456 Oak Avenue, Springfield",
+    profile_picture: "https://example.com/sara-profile.png"
   });
   token = result.body.token;
 });
