@@ -30,7 +30,7 @@ const createJob = async (req, res) => {
   }
 };
 
-// Get job by ID
+// Get a job by ID
 const getJobById = async (req, res) => {
   const { jobId } = req.params;
   if (!mongoose.Types.ObjectId.isValid(jobId)) {
@@ -50,7 +50,7 @@ const getJobById = async (req, res) => {
   }
 };
 
-// Update job by ID
+// Update a job by ID
 const updateJob = async (req, res) => {
   const { jobId } = req.params;
   if (!mongoose.Types.ObjectId.isValid(jobId)) {
@@ -74,7 +74,7 @@ const updateJob = async (req, res) => {
   }
 };
 
-// Delete job by ID
+// Delete a job by ID
 const deleteJob = async (req, res) => {
   const { jobId } = req.params;
   if (!mongoose.Types.ObjectId.isValid(jobId)) {
