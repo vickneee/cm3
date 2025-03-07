@@ -83,15 +83,16 @@ let token = null;
 beforeAll(async () => {
   await User.deleteMany({});
   const result = await api.post("/api/users/signup").send({
-    name: "John Doe",
-    username: "JohnDoe",
-    password: "R3g5T7#gh",
-    phone_number: "1234567890",
-    gender: "Male",
-    date_of_birth: "1990-01-01",
-    membership_status: "Inactive",
-    address: "123 Main St, City",
-    profile_picture: "https://example.com/profile.jpg",
+    name: "Sara Smith",
+    username: "sara_smith89",
+    password: "myp@ssword123",
+    phone_number: "987-654-3210",
+    gender: "Female",
+    date_of_birth: "1989-11-22",
+    membership_status: "Silver",
+    bio: "Passionate about design and photography.",
+    address: "456 Oak Avenue, Springfield",
+    profile_picture: "https://example.com/sara-profile.png"
   });
   token = result.body.token;
 });
@@ -121,25 +122,27 @@ describe("Given there are initially some jobs saved", () => {
 
   it("should create one job when POST /api/jobs is called", async () => {
     const newJob = {
-      title: "Graphic Designer",
-      type: "Freelance",
-      description: "Create visual content for digital and print media.",
+      title: "Software Engineer",
+      type: "Full-time",
+      description: "We are looking for a skilled software engineer to join our team and build high-quality software solutions.",
       company: {
-        name: "Design Studio",
-        contactEmail: "hello@designstudio.com",
-        contactPhone: "+6677889900",
-        website: "https://designstudio.com"
+        name: "Tech Innovators Ltd.",
+        contactEmail: "hr@techinnovators.com",
+        contactPhone: "123-456-7890",
+        website: "https://www.techinnovators.com",
+        size: 500
       },
-      location: "Los Angeles, CA",
-      salary: 70000,
-      postedDate: "2021-01-01",
+      location: "Helsinki, Finland",
+      salary: 60000,
+      experienceLevel: "Mid",
+      postedDate: "2025-03-07T00:00:00.000Z",
       status: "open",
-      applicationDeadline: "2021-02-01",
-      requirements: ["Graphic Design", "Adobe Creative Suite"]
+      applicationDeadline: "2025-04-07T00:00:00.000Z",
+      requirements: ["JavaScript", "React", "Node.js"]
     }
     await api
       .post("/api/jobs")
-      .set("Authorization", "Bearer ", token)
+      .set("Authorization", "Bearer " + token)
       .send(newJob)
       .expect(201);
   });
