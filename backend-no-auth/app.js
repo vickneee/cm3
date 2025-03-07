@@ -9,7 +9,7 @@ const cors = require("cors");
 // Middlewares
 app.use(cors())
 app.use(express.json());
-app.use(express.static('view')); // Serve static files from 'view'
+app.use(express.static('dist')); // Serve static files from 'view'
 
 connectDB();
 
@@ -21,7 +21,7 @@ app.use(errorHandler);
 
 module.exports = app;
 app.get('*', (req, res) => {
-    res.sendFile(__dirname + '/view/index.html');
+    res.sendFile(__dirname + '/dist/index.html');
 });
 
 // app.listen(process.env.PORT, () => {
