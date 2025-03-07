@@ -1,7 +1,11 @@
+import { Link } from 'react-router-dom';
+
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <h1>Job Search</h1>
+      <Link to="/">
+        <h1>React Jobs</h1>
+      </Link>
       <div className="links">
         <a href="/">Home</a>
         <a href="/add-job">Add Job</a>
@@ -9,5 +13,5 @@ const Navbar = () => {
     </nav>
   );
 }
- 
+
 export default Navbar;
