@@ -44,9 +44,11 @@ const jobSchema = new mongoose.Schema({
     contactEmail: { type: String, required: true },
     contactPhone: { type: String, required: true },
     website: { type: String }, // Optional: Company's website URL
+    size: { type: Number }, // Number of employees
   },
   location: { type: String, required: true }, // e.g., City, State, or Remote
   salary: { type: Number, required: true }, // e.g., Annual or hourly salary
+  experienceLevel: { type: String, enum: ['Entry', 'Mid', 'Senior'], default: 'Entry' }, // Experience level
   postedDate: { type: Date, default: Date.now }, // Date the job was posted
   status: { type: String, enum: ['open', 'closed'], default: 'open' }, // Job status (open/closed)
   applicationDeadline: { type: Date }, // Deadline for job applications  
@@ -71,6 +73,7 @@ const userSchema = new Schema({
   gender: { type: String, required: true },
   date_of_birth: { type: Date, required: true },
   membership_status: { type: String, required: true },
+  bio: { type: String },
   address: { type: String, required: true },
   profile_picture: { type: String, required: false }
 }, { timestamps: true, versionKey: false });
