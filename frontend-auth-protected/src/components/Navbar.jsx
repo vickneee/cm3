@@ -1,13 +1,21 @@
+import { Link } from 'react-router-dom';
+
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <h1>Job Search</h1>
+      <Link to="/">
+        <h1>React Jobs</h1>
+      </Link>
       <div className="links">
-        <a href="/">Home</a>
-        <a href="/add-job">Add Job</a>
+        <Link to="/">Home</Link>
+        <Link to="/add-job">Add Job</Link>
       </div>
+        <div>
+      <Link to="/login">Login</Link>
+      <Link to="/signup">Signup</Link>
+    </div>
     </nav>
   );
 }
- 
+
 export default Navbar;
