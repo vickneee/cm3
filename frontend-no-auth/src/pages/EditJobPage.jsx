@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+ 
 
-const AddJobPage = () => {
+const EditJobPage = () => {
+  const { id } = useParams(); // Get job ID from URL
+  const navigate = useNavigate(); // For redirection
+
   const [job, setJob] = useState({
     title: "",
     type: "Full-Time",
@@ -19,6 +24,38 @@ const AddJobPage = () => {
     requirements: "",
   });
 
+  useEffect(() => {
+    // Fetch existing job details
+    const fetchJob = async () => {
+      try {
+        const response = await axios.get(`http://localhost:4000/api/jobs/${id}`);
+        const jobData = response.data;
+
+        setJob({
+          title: jobData.title,
+          type: jobData.type,
+          description: jobData.description,
+          companyName: jobData.company.name,
+          contactEmail: jobData.company.contactEmail,
+          contactPhone: jobData.company.contactPhone,
+          website: jobData.company.website,
+          size: jobData.company.size.toString(),
+          location: jobData.location,
+          salary: jobData.salary.toString(),
+          experienceLevel: jobData.experienceLevel,
+          status: jobData.status,
+          applicationDeadline: jobData.applicationDeadline,
+          requirements: jobData.requirements.join(", "),
+        });
+      } catch (error) {
+        console.error("Error fetching job:", error);
+        alert("Failed to load job data.");
+      }
+    };
+
+    fetchJob();
+  }, [id]);
+
   const handleChange = (e) => {
     setJob({ ...job, [e.target.name]: e.target.value });
   };
@@ -27,7 +64,7 @@ const AddJobPage = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:4000/api/jobs", {
+      await axios.put(`http://localhost:4000/api/jobs/${id}`, {
         title: job.title,
         type: job.type,
         description: job.description,
@@ -36,7 +73,7 @@ const AddJobPage = () => {
         experienceLevel: job.experienceLevel,
         status: job.status,
         applicationDeadline: job.applicationDeadline,
-        requirements: job.requirements.split(",").map(r => r.trim()),
+        requirements: job.requirements.split(",").map((r) => r.trim()),
         company: {
           name: job.companyName,
           contactEmail: job.contactEmail,
@@ -46,17 +83,31 @@ const AddJobPage = () => {
         },
       });
 
-      alert("Job added successfully!");
-      window.location.href = "/";
+      alert("Job updated successfully!");
+      navigate("/"); // Redirect to homepage
     } catch (error) {
-      alert("Failed to add job. Please check all fields.");
+      alert("Failed to update job. Please check all fields.");
+      console.error(error);
+    }
+  };
+
+  const deleteJob = async () => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this job?");
+    if (!confirmDelete) return;
+
+    try {
+      await axios.delete(`http://localhost:4000/api/jobs/${id}`);
+      alert("Job deleted successfully!");
+      navigate("/"); // Redirect to homepage
+    } catch (error) {
+      alert("Failed to delete job.");
       console.error(error);
     }
   };
 
   return (
-    <div className="create">
-      <h2>Add a New Job</h2>
+    <div className="edit">
+      <h2>Edit Job</h2>
       <form onSubmit={submitForm}>
         <label>Job Title:</label>
         <input type="text" name="title" required value={job.title} onChange={handleChange} />
@@ -111,10 +162,13 @@ const AddJobPage = () => {
         <label>Requirements (comma separated):</label>
         <input type="text" name="requirements" value={job.requirements} onChange={handleChange} />
 
-        <button type="submit">Add Job</button>
+        <button type="submit">Update Job</button>
+        <button type="button" onClick={deleteJob} style={{ backgroundColor: "red", marginLeft: "10px" }}>
+          Delete Job
+        </button>
       </form>
     </div>
   );
 };
 
-export default AddJobPage;
+export default EditJobPage;
