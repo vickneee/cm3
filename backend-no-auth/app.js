@@ -9,6 +9,7 @@ const cors = require("cors");
 // Middlewares
 app.use(cors())
 app.use(express.json());
+app.use(express.static('view')); // Serve static files from 'view'
 
 connectDB();
 
@@ -19,6 +20,9 @@ app.use(unknownEndpoint);
 app.use(errorHandler);
 
 module.exports = app;
+app.get('*', (req, res) => {
+    res.sendFile(__dirname + '/view/index.html');
+});
 
 // app.listen(process.env.PORT, () => {
 //   console.log(`Server running on port ${process.env.PORT}`)
