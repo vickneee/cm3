@@ -18,7 +18,7 @@ const EditJobPage = () => {
   const [website, setWebsite] = useState("");
   const [size, setSize] = useState();
   const [location, setLocation] = useState("");
-  const [salary, setSalary] = useState("");
+  const [salary, setSalary] = useState();
   const [experienceLevel, setExperienceLevel] = useState("");
   const [postedDate, setPostedDate] = useState("");
   const [status, setStatus] = useState("open");

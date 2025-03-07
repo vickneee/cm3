@@ -19,10 +19,11 @@ app.use("/api/jobs", jobRouter);
 app.use(unknownEndpoint);
 app.use(errorHandler);
 
-module.exports = app;
 app.get('*', (req, res) => {
     res.sendFile(__dirname + '/dist/index.html');
 });
+
+module.exports = app;
 
 // app.listen(process.env.PORT, () => {
 //   console.log(`Server running on port ${process.env.PORT}`)
