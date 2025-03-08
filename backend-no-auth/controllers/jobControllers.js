@@ -1,4 +1,4 @@
- // https://cm3-v3-4.onrender.com/api/jobs/ // This is my link From Render 
+ // https://cm3-v3-4.onrender.com/api/jobs/ // This is my link From Render
 
  const Job = require('../models/jobModel');
 
@@ -24,29 +24,30 @@
  };
  
  const createJob = async (req, res) => {
-   const { title, type, description, company, location, salary, experienceLevel, applicationDeadline, requirements } = req.body;
- 
-   if (!title || !type || !description || !company || !location || !salary || !experienceLevel || !applicationDeadline) {
-     return res.status(400).json({ error: 'All fields are required' }); 
-   }
- 
+   // const { title, type, description, company, location, salary, experienceLevel, applicationDeadline, requirements } = req.body;
+   //
+   // if (!title || !type || !description || !company || !location || !salary || !experienceLevel || !applicationDeadline) {
+   //   return res.status(400).json({ error: 'All fields are required' });
+   // }
+   //
    try {
      const newJob = new Job({
-       title,
-       type,
-       description,
-       company: {
-         name: company.name,
-         contactEmail: company.contactEmail,
-         contactPhone: company.contactPhone,
-         website: company.website,
-         size: company.size
-       },
-       location,
-       salary,
-       experienceLevel,
-       applicationDeadline,
-       requirements,
+       // title,
+       // type,
+       // description,
+       // company: {
+       //   name: company.name,
+       //   contactEmail: company.contactEmail,
+       //   contactPhone: company.contactPhone,
+       //   website: company.website,
+       //   size: company.size
+       // },
+       // location,
+       // salary,
+       // experienceLevel,
+       // applicationDeadline,
+       // requirements,
+        ...req.body,
      });
  
      await newJob.save();
