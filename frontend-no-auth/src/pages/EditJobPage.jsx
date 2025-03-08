@@ -91,19 +91,19 @@ const EditJobPage = () => {
     }
   };
 
-  const deleteJob = async () => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this job?");
-    if (!confirmDelete) return;
-
-    try {
-      await axios.delete(`/api/jobs/${id}`);
-      alert("Job deleted successfully!");
-      navigate("/"); // Redirect to homepage
-    } catch (error) {
-      alert("Failed to delete job.");
-      console.error(error);
-    }
-  };
+  // const deleteJob = async () => {
+  //   const confirmDelete = window.confirm("Are you sure you want to delete this job?");
+  //   if (!confirmDelete) return;
+  //
+  //   try {
+  //     await axios.delete(`/api/jobs/${id}`);
+  //     alert("Job deleted successfully!");
+  //     navigate("/"); // Redirect to homepage
+  //   } catch (error) {
+  //     alert("Failed to delete job.");
+  //     console.error(error);
+  //   }
+  // };
 
   return (
     <div className="create">
