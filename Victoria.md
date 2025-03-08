@@ -58,11 +58,15 @@ Now, the user gets feedback if adding the job fails.
 
 You are using hardcoded dates ("2023-04-03T21:00:00.000Z"), which is incorrect.
 
+```javascript
+postedDate: new Date("2023-04-03T21:00:00.000Z").toLocaleString(), 
+applicationDeadline: new Date("2023-04-03T21:00:00.000Z").toLocaleString()
+```
 Fix this:
 
 ```javascript
 postedDate: new Date(postedDate).toISOString(),
-applicationDeadline: new Date(applicationDeadline).toISOString(),
+applicationDeadline: new Date(applicationDeadline).toISOString()
 ```
 
 This converts the date input correctly.
