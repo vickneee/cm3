@@ -15,4 +15,13 @@ const userSchema = new Schema({
   profile_picture: { type: String, required: false }
 }, { timestamps: true, versionKey: false });
 
+// Add virtual field id
+userSchema.set('toJSON', {
+  virtuals: true,
+  transform: (doc, ret) => {
+    ret.id = ret._id;
+    return ret;
+  }
+});
+
 module.exports = mongoose.model("User", userSchema);
