@@ -129,3 +129,17 @@ const submitForm = async (e) => {
   }
 };
 ```
+
+---
+
+Key improvements:
+
+- Ensure that the token is never undefined.
+- Wait for the job to be added before showing a success message.
+- Convert dates to the correct format before sending them to the backend.
+
+Lessons Learned:
+
+- Always handle asynchronous functions properly.
+- Ensure that data is correctly formatted before sending it to the backend.
+- Provide feedback to users when an action fails or succeeds.
