@@ -20,8 +20,8 @@ const AddJobPage = () => {
   const [applicationDeadline, setApplicationDeadline] = useState('');
   const [requirements, setRequirements] = useState(['']);
   
-  const user = JSON.parse(localStorage.getItem('user'));
-  const token = user ? user.token : null;
+  const user = JSON.parse(localStorage.getItem('user') || "{}");
+  const token = user?.token || '';
   
   const navigate = useNavigate();
   
@@ -38,14 +38,16 @@ const AddJobPage = () => {
       if (!res.ok) {
         throw new Error('Failed to add job');
       }
+      
+      return true; // Success if no error
+      
     } catch (error) {
       console.error(error);
       return false;
     }
-    return true;
   };
   
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
     
     // Convert comma-separated string to an array
@@ -67,15 +69,21 @@ const AddJobPage = () => {
       location,
       salary,
       experienceLevel,
-      postedDate: new Date("2023-04-03T21:00:00.000Z").toLocaleString(), // Readable date format
+      postedDate: new Date(postedDate).toISOString(), // Convert to ISO format
       status,
-      applicationDeadline: new Date("2023-04-03T21:00:00.000Z").toLocaleString(), // Readable date format
+      applicationDeadline: new Date(postedDate).toISOString(), // Convert to ISO format
       requirements: requirementsArray, // Convert requirements to array
     };
     
-    addJob(newJob);
-    toast.success('Job added successfully');
-    navigate('/');
+    const success = await addJob(newJob); // Wait for a job to be added
+    if (success) {
+      console.log("Job added successfully!");
+      toast.success("Job added successfully!");
+      navigate("/");
+    } else {
+      console.error("Failed to add job. Try again.");
+      toast.error("Failed to add job. Try again.");
+    }
   };
   
   return (
