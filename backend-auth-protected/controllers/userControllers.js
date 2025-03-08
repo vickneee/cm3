@@ -35,11 +35,11 @@ const signupUser = async (req, res) => {
       !date_of_birth ||
       !membership_status ||
       !bio ||
-      !address ||
-      !profile_picture
+      !address
+      // !profile_picture // profile_picture is optional
     ) {
       res.status(400);
-      throw new Error("Please add all fields");
+      throw new Error("Please add all fields!");
     }
     // Check if user exists
     const userExists = await User.findOne({ username });

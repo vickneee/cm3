@@ -1,6 +1,6 @@
 import useField from "../hooks/useField";
 import useSignup from "../hooks/useSignup";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -11,52 +11,57 @@ const Signup = ({setIsAuthenticated}) => {
   const username = useField("text");
   const password = useField("password");
   const phoneNumber = useField("text");
-  const gender = useField("text");
+  const [selectedGender, setSelectedGender] = useState('Male');
   const dateOfBirth = useField("date");
-  const membershipStatus = useField("text");
-  const bio = useField("text");
+  const [selectedMembershipStatus, setSelectedMembershipStatus] = useState('Active');
+  const bio = useField("textarea");
   const address = useField('text');
   const profilePicture = useField('text');
   const [validationError, setValidationError] = useState(null); // Client side validation error state
   
-  const { signup, error, validationError: signupValidationError } = useSignup("/api/users/signup");
+  const { signup } = useSignup("/api/users/signup");
   
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-    }
-    if (signupValidationError) {
-      setValidationError(signupValidationError);
-    }
-  }, [error, signupValidationError]);
+  const handleGenderChange = (e) => {
+    setSelectedGender(e.target.value);
+  };
+  
+  const handleMembershipStatusChange = (e) => {
+    setSelectedMembershipStatus(e.target.value);
+  };
   
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     
-    if (!name.value || !username.value || !password.value || !phoneNumber.value || !gender.value || !dateOfBirth.value || !membershipStatus.value || !bio.value || !address.value) {
-      setValidationError('Please provide all the required fields.');
+    if (!name.value || !username.value || !password.value || !phoneNumber.value || !selectedGender || !dateOfBirth.value || !selectedMembershipStatus || !bio.value || !address.value) {
+      setValidationError('Please provide all the required fields!!!');
+      toast.error('Please provide all the required fields!!!');
       return;
     }
     
     setValidationError(null); // Clear validation error
     
-    const user = await signup({
-      name: name.value,
-      username: username.value,
-      password: password.value,
-      phone_number: phoneNumber.value,
-      gender: gender.value,
-      date_of_birth: dateOfBirth.value,
-      membership_status: membershipStatus.value,
-      bio: bio.value,
-      address: address.value,
-      profile_picture: profilePicture.value
-    });
-    if (user) {
-      console.log("Signup successful");
-      toast.success("Signup successful!");
-      setIsAuthenticated(true);
-      navigate("/");
+    try {
+      const user = await signup({
+        name: name.value,
+        username: username.value,
+        password: password.value,
+        phone_number: phoneNumber.value,
+        gender: selectedGender,
+        date_of_birth: dateOfBirth.value,
+        membership_status: selectedMembershipStatus,
+        bio: bio.value,
+        address: address.value,
+        profile_picture: profilePicture.value,
+      });
+      if (user) { // Check if user exists instead of error
+        console.log('Signup successful!');
+        toast.success('Signup successful!');
+        setIsAuthenticated(true);
+        navigate('/');
+      }
+    } catch (error) {
+      console.error('Signup failed:', error.message);
+      toast.error('Signup failed!');
     }
   };
   
@@ -74,17 +79,25 @@ const Signup = ({setIsAuthenticated}) => {
         <label>Phone Number:</label>
         <input {...phoneNumber} />
         <label>Gender:</label>
-        <input {...gender} />
+        <select value={selectedGender} onChange={handleGenderChange}>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
         <label>Date of Birth:</label>
         <input {...dateOfBirth} />
         <label>Membership Status:</label>
-        <input {...membershipStatus} />
+        <select value={selectedMembershipStatus} onChange={handleMembershipStatusChange}>
+          <option value="Active">Active</option>
+          <option value="Not Active">Not Active</option>
+          <option value="Pending">Pending</option>
+        </select>
         <label>Bio:</label>
-        <input {...bio} />
+        <textarea {...bio} />
         <label>Address:</label>
         <input {...address} />
-        <label>Profile picture:</label>
-        <input {...profilePicture} />
+        <label>Profile picture (Optional):</label>
+        <input {...profilePicture}/>
         <button>Sign up</button>
       </form>
     </div>

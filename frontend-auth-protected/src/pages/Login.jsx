@@ -11,7 +11,7 @@ const Login = ({setIsAuthenticated}) => {
   const password = useField("password");
   const [validationError, setValidationError] = useState(null); // Client side validation error state
   
-  const { login, error } = useLogin("/api/users/login");
+  const { login } = useLogin("/api/users/login");
   
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -24,17 +24,27 @@ const Login = ({setIsAuthenticated}) => {
     
     setValidationError(null);
     
-    await login({
-      username: username.value,
-      password: password.value,
-    });
-    if (!error) {
-      console.log("Login successful");
-      toast.success("Login successful!");
+    try {
+      const user = await login({
+        username: username.value,
+        password: password.value,
+      });
+      
+      if (!user) {
+        console.log('Login failed');
+        // toast.error('Login failed, check your credentials.');
+        return setIsAuthenticated(false);
+      }
+      console.log('Login successful!');
+      toast.success('Login successful!');
       setIsAuthenticated(true);
-      navigate("/");
+      navigate('/');
+      
+    } catch (error) {
+      console.error("Login failed:", error.message);
+      toast.error('Login failed, check your credentials.');
     }
-  };
+  }
   
   return (
     <div className="create">
