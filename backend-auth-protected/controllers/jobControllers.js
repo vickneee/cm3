@@ -33,6 +33,7 @@ const createJob = async (req, res) => {
 // Get a job by ID
 const getJobById = async (req, res) => {
   const { jobId } = req.params;
+  
   if (!mongoose.Types.ObjectId.isValid(jobId)) {
     return res.status(404).json({ error: "No such job" });
   }
@@ -53,6 +54,7 @@ const getJobById = async (req, res) => {
 // Update a job by ID
 const updateJob = async (req, res) => {
   const { jobId } = req.params;
+  
   if (!mongoose.Types.ObjectId.isValid(jobId)) {
     return res.status(404).json({ error: "No such job" });
   }
