@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
- 
+
 
 const EditJobPage = () => {
   const { id } = useParams(); // Get job ID from URL
@@ -106,7 +106,7 @@ const EditJobPage = () => {
   };
 
   return (
-    <div className="edit">
+    <div className="create">
       <h2>Edit Job</h2>
       <form onSubmit={submitForm}>
         <label>Job Title:</label>
@@ -163,9 +163,9 @@ const EditJobPage = () => {
         <input type="text" name="requirements" value={job.requirements} onChange={handleChange} />
 
         <button type="submit">Update Job</button>
-        <button type="button" onClick={deleteJob} style={{ backgroundColor: "red", marginLeft: "10px" }}>
-          Delete Job
-        </button>
+        {/*<button type="button" onClick={deleteJob} style={{ backgroundColor: "red", marginLeft: "10px" }}>*/}
+        {/*  Delete Job*/}
+        {/*</button>*/}
       </form>
     </div>
   );
