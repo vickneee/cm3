@@ -11,14 +11,14 @@ const AddJobPage = () => {
   const [contactEmail, setContactEmail] = useState('');
   const [contactPhone, setContactPhone] = useState('');
   const [website, setWebsite] = useState('');
-  const [size, setSize] = useState();
+  const [size, setSize] = useState('');
   const [location, setLocation] = useState('');
-  const [salary, setSalary] = useState();
+  const [salary, setSalary] = useState('');
   const [experienceLevel, setExperienceLevel] = useState('Entry');
   const [postedDate, setPostedDate] = useState('');
   const [status, setStatus] = useState('open');
   const [applicationDeadline, setApplicationDeadline] = useState('');
-  const [requirements, setRequirements] = useState(['']);
+  const [requirements, setRequirements] = useState('');
   
   const user = JSON.parse(localStorage.getItem('user'));
   const token = user ? user.token : null;
@@ -38,14 +38,14 @@ const AddJobPage = () => {
       if (!res.ok) {
         throw new Error('Failed to add job');
       }
+      return true;
     } catch (error) {
       console.error(error);
       return false;
     }
-    return true;
   };
   
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
     
     // Convert comma-separated string to an array
@@ -67,15 +67,17 @@ const AddJobPage = () => {
       location,
       salary,
       experienceLevel,
-      postedDate: new Date("2023-04-03T21:00:00.000Z").toLocaleString(), // Readable date format
+      postedDate,
       status,
-      applicationDeadline: new Date("2023-04-03T21:00:00.000Z").toLocaleString(), // Readable date format
+      applicationDeadline,
       requirements: requirementsArray, // Convert requirements to array
     };
     
-    addJob(newJob);
-    toast.success('Job added successfully');
-    navigate('/');
+    const success = await addJob(newJob);
+    if (success) {
+      toast.success('Job added successfully');
+      navigate('/');
+    }
   };
   
   return (
