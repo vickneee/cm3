@@ -13,6 +13,11 @@ const JobPage = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const token = user ? user.token : null;
   
+  const formatDate = (date) => {
+    const d = new Date(date);
+    return d.toLocaleDateString();
+  }
+  
   const deleteJob = async (id) => {
     try {
       const res = await fetch(`/api/jobs/${id}`, {
@@ -86,9 +91,9 @@ const JobPage = () => {
           <p>Location: {job.location}</p>
           <p>Salary: {job.salary}</p>
           <p>Experience Level: {job.experienceLevel}</p>
-          <p>Posted Date: {job.postedDate}</p>
+          <p>Posted Date: {formatDate(job.postedDate)}</p>
           <p>Status: {job.status}</p>
-          <p>Application Deadline: {job.applicationDeadline}</p>
+          <p>Application Deadline: {formatDate(job.applicationDeadline)}</p>
           <p>Requirements: {job.requirements.join(', ')}</p>
           <div className="align-row">
             <Link to={`/edit-job/${id}`} className="btn"> Edit </Link>

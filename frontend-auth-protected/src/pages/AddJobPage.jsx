@@ -15,7 +15,7 @@ const AddJobPage = () => {
   const [location, setLocation] = useState('');
   const [salary, setSalary] = useState();
   const [experienceLevel, setExperienceLevel] = useState('Entry');
-  const [postedDate, setPostedDate] = useState('');
+  // const [postedDate, setPostedDate] = useState('');
   const [status, setStatus] = useState('open');
   const [applicationDeadline, setApplicationDeadline] = useState('');
   const [requirements, setRequirements] = useState(['']);
@@ -24,6 +24,11 @@ const AddJobPage = () => {
   const token = user?.token || '';
   
   const navigate = useNavigate();
+  
+  const formatDate = (date) => {
+    const d = new Date(date);
+    return d.toLocaleDateString();
+  }
   
   const addJob = async (newJob) => {
     try {
@@ -69,9 +74,9 @@ const AddJobPage = () => {
       location,
       salary,
       experienceLevel,
-      postedDate: new Date(postedDate).toISOString(), // Convert to ISO format
+      // postedDate: formatDate(postedDate),
       status,
-      applicationDeadline: new Date(postedDate).toISOString(), // Convert to ISO format
+      applicationDeadline: formatDate(applicationDeadline),
       requirements: requirementsArray, // Convert requirements to array
     };
     
@@ -132,9 +137,9 @@ const AddJobPage = () => {
           <option value="Mid">Mid</option>
           <option value="Senior">Senior</option>
         </select>
-        <label>Posted Date:</label>
-        <input type="date" required value={postedDate}
-               onChange={(e) => setPostedDate(e.target.value)}/>
+        {/*<label>Posted Date:</label>*/}
+        {/*<input type="date" required value={postedDate}*/}
+        {/*       onChange={(e) => setPostedDate(e.target.value)}/>*/}
         <label>Status:</label>
         <select value={status} onChange={(e) => setStatus(e.target.value)}>
           <option value="open">Open</option>

@@ -30,6 +30,11 @@ const EditJobPage = () => {
   
   const navigate = useNavigate();
   
+  const formatDate = (date) => {
+    const d = new Date(date);
+    return d.toLocaleDateString();
+  }
+  
   const updateJob = async (job) => {
     try {
       const res = await fetch(`/api/jobs/${job.id}`, {
@@ -72,9 +77,9 @@ const EditJobPage = () => {
         setLocation(data.location);
         setSalary(data.salary);
         setExperienceLevel(data.experienceLevel);
-        setPostedDate(data.postedDate);
+        setPostedDate(formatDate(data.postedDate));
         setStatus(data.status);
-        setApplicationDeadline(data.applicationDeadline);
+        setApplicationDeadline(formatDate(data.applicationDeadline));
         setRequirements(data.requirements.join(", "));
       } catch (error) {
         console.error("Failed to fetch job:", error);
