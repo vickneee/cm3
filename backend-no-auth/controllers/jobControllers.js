@@ -47,6 +47,7 @@
        // experienceLevel,
        // applicationDeadline,
        // requirements,
+       
         ...req.body,
      });
  
@@ -69,6 +70,7 @@
    }
  };
  
+  
  const deleteJob = async (req, res) => {
    try {
      const job = await Job.findByIdAndDelete(req.params.id);
