@@ -59,35 +59,6 @@ const userSchema = new Schema({
 
 ---
 
-## Database Setup
-
-### Local Testing
-- Start by testing your application with a **local database** to ensure everything works smoothly.
-
-### Cloud Integration
-- Once fully functional, switch to using a **cloud database** from MongoDB Atlas.
-- Test your APIs and frontend with the cloud setup.
-
----
-
-## Deployment
-
-Deploy the following components:
-
-1. **Deploy API V1**  
-   Deploy your backend API V1 (without authentication) to a platform like **Render**.
-
-2. **Deploy Frontend V1**  
-   Deploy the frontend that works with API V1 to a platform like **Render**.
-
-3. **Deploy API V2**  
-   Deploy your backend API V2 (with authentication) and ensure protected routes are working.
-
-4. **Deploy Frontend V2**  
-   Deploy the final frontend version integrated with API V2.
-
----
-
 ## Usage
 
 ### Part 1
