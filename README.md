@@ -4,32 +4,6 @@
 
 [CM3 V2 Link](https://cm3-gr2-v2.onrender.com/)
 
-## Deliverables
-
-Please submit to *OMA* **`7 separate`** *links* to the following deliverables for this coding marathon:
-
-1. **Code** for **API V1** (without authentication)
-2. **Code** for **API V2** (with authentication and protection)
-3. **Code** for the final **frontend**. Optionally, include the code for Frontend V1, which worked with API V1.
-4. Backend **tests** for API V1
-5. Backend **tests** for API V2
-6. **URLs** for the deployed APIs and frontend(s)
-7. **Self-assessment** and **self-grading** of your code. Use the [self-assessment template](./cm-template.md) for this purpose.
-
----
-
-## Submission Checklist
-
-Use this checklist to track your progress:
-
-- [ ] API V1 Code (without authentication)
-- [ ] API V2 Code (with authentication + protection)
-- [ ] Frontend Code (with API V2 integration, Optional: Frontend API V1 code)
-- [ ] Backend tests for API V1
-- [ ] Backend tests for API V2
-- [ ] Deployed URLs (APIs & Frontend)
-- [ ] Self-assessment & grading
-
 ---
 
 ## Data Models
